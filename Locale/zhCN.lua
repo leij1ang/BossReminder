@@ -1,0 +1,65 @@
+local addonName, ns = ...
+
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "zhCN")
+if not L then
+    return
+end
+
+L.TITLE = "BossReminder - 技能配置"
+L.SHARED_MEDIA = "选择触发语音"
+L.HIGHLIGHT_SOUND = "选择预警语音"
+L.NONE = "未选择"
+L.COUNTDOWN_5S = "使用倒数预警"
+L.HIGHLIGHT_SOUND_WARN = "倒数功能将不可用"
+L.COUNTDOWN_UNAVAILABLE = "提醒语音将不可用"
+L.STATUS_OPEN_FROM_EJ = "请从遭遇手册的配置按钮进入"
+L.STATUS_INVALID_SPELL_ID = "无效的技能ID"
+L.UNKNOWN = "未知"
+L.SPELL_UNKNOWN = "未知技能"
+L.STATUS_CURRENT_SPELL_FMT = "当前技能: %s (%d)"
+L.STATUS_DISABLED_TAG = "[已禁用]"
+L.STATUS_SAVE_NEED_SELECT = "保存失败: 请先从遭遇手册选择技能"
+L.STATUS_SAVE_INVALID = "保存失败: 技能ID无效"
+L.STATUS_SAVED_FMT = "已保存: %s (%d)"
+
+L.BUTTON_SAVE = "保存"
+L.BUTTON_CLOSE = "关闭"
+L.BUTTON_ENABLE = "启用"
+L.BUTTON_DISABLE = "禁用"
+L.BUTTON_DELETE = "删除"
+L.BUTTON_OVERVIEW = "总览"
+L.BUTTON_CLEAR = "清空"
+L.BUTTON_EXPORT = "导出"
+L.BUTTON_IMPORT = "导入"
+L.BUTTON_DELETE_ALL = "全部删除"
+L.BUTTON_YES = "确定"
+L.BUTTON_CANCEL = "取消"
+L.BUTTON_PREVIEW = "试听"
+
+L.HEADER_INSTANCE = "副本"
+L.HEADER_BOSS = "首领"
+L.HEADER_SPELL = "技能"
+L.HEADER_ACTION = "操作"
+
+L.OVERVIEW_TITLE = "BossReminder 总览"
+L.OVERVIEW_FILTER = "筛选"
+L.OVERVIEW_TIMELINE_LOG = "Timeline日志"
+L.OVERVIEW_COUNTDOWN_VOICE = "倒数语音(SharedMedia)"
+L.OVERVIEW_HIGHLIGHT_DURATION_HINT = "时间轴高亮时长(CVar): %s秒"
+L.OVERVIEW_EMPTY = "暂无配置技能"
+L.OVERVIEW_SHOWING_FMT = "显示 %d / %d"
+L.OVERVIEW_COUNT_FMT = "共 %d 个技能配置"
+L.OVERVIEW_DELETE_ALL_CONFIRM = "确定要删除全部技能配置吗？"
+
+L.TRANSFER_EXPORT_TITLE = "导出总览"
+L.TRANSFER_IMPORT_TITLE = "导入总览"
+L.TRANSFER_EXPORTING_FMT = "正在导出 %d 条记录"
+L.TRANSFER_EXPORT_FAILED_FMT = "导出失败: %s"
+L.TRANSFER_IMPORT_HINT = "粘贴 BRP1 字符串后点击导入"
+L.TRANSFER_ERROR_FMT = "错误: %s"
+L.TRANSFER_IMPORTED_FMT = "导入 %d 条，跳过 %d 条"
+
+L.TOOLTIP_CONFIG_SPELL = "配置这个技能"
+L.TOOLTIP_MINIMAP_HINT = "点击打开/关闭总览"
+L.TOOLTIP_SPELL_ID_FMT = "技能ID: %d"
+L.ALERT_TARGET_YOU = "目标是你"

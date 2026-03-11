@@ -1,0 +1,65 @@
+local addonName, ns = ...
+
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
+if not L then
+    return
+end
+
+L.TITLE = "BossReminder - Spell Config"
+L.SHARED_MEDIA = "Sound (SharedMedia)"
+L.HIGHLIGHT_SOUND = "Reminder Voice (SharedMedia)"
+L.NONE = "None"
+L.COUNTDOWN_5S = "Use countdown warning"
+L.HIGHLIGHT_SOUND_WARN = "Countdown will be unavailable"
+L.COUNTDOWN_UNAVAILABLE = "Reminder voice will be unavailable"
+L.STATUS_OPEN_FROM_EJ = "Open from Encounter Journal config button"
+L.STATUS_INVALID_SPELL_ID = "Invalid spell ID"
+L.UNKNOWN = "Unknown"
+L.SPELL_UNKNOWN = "Unknown Spell"
+L.STATUS_CURRENT_SPELL_FMT = "Current Spell: %s (%d)"
+L.STATUS_DISABLED_TAG = "[Disabled]"
+L.STATUS_SAVE_NEED_SELECT = "Save failed: select a spell from Encounter Journal first"
+L.STATUS_SAVE_INVALID = "Save failed: invalid spell ID"
+L.STATUS_SAVED_FMT = "Saved: %s (%d)"
+
+L.BUTTON_SAVE = "Save"
+L.BUTTON_CLOSE = "Close"
+L.BUTTON_ENABLE = "Enable"
+L.BUTTON_DISABLE = "Disable"
+L.BUTTON_DELETE = "Delete"
+L.BUTTON_OVERVIEW = "Overview"
+L.BUTTON_CLEAR = "Clear"
+L.BUTTON_EXPORT = "Export"
+L.BUTTON_IMPORT = "Import"
+L.BUTTON_DELETE_ALL = "Delete All"
+L.BUTTON_YES = "Yes"
+L.BUTTON_CANCEL = "Cancel"
+L.BUTTON_PREVIEW = "Preview"
+
+L.HEADER_INSTANCE = "Instance"
+L.HEADER_BOSS = "Boss"
+L.HEADER_SPELL = "Spell"
+L.HEADER_ACTION = "Action"
+
+L.OVERVIEW_TITLE = "BossReminder Overview"
+L.OVERVIEW_FILTER = "Filter"
+L.OVERVIEW_TIMELINE_LOG = "Timeline Log"
+L.OVERVIEW_COUNTDOWN_VOICE = "Countdown Voice (SharedMedia)"
+L.OVERVIEW_HIGHLIGHT_DURATION_HINT = "Timeline Highlight Duration (CVar): %ss"
+L.OVERVIEW_EMPTY = "No configured spells"
+L.OVERVIEW_SHOWING_FMT = "Showing %d / %d"
+L.OVERVIEW_COUNT_FMT = "%d spell configurations"
+L.OVERVIEW_DELETE_ALL_CONFIRM = "Delete all spell configurations?"
+
+L.TRANSFER_EXPORT_TITLE = "Export Overview"
+L.TRANSFER_IMPORT_TITLE = "Import Overview"
+L.TRANSFER_EXPORTING_FMT = "Exporting %d entries"
+L.TRANSFER_EXPORT_FAILED_FMT = "Export failed: %s"
+L.TRANSFER_IMPORT_HINT = "Paste BRP1 string then click Import"
+L.TRANSFER_ERROR_FMT = "Error: %s"
+L.TRANSFER_IMPORTED_FMT = "Imported %d, skipped %d"
+
+L.TOOLTIP_CONFIG_SPELL = "Configure this spell"
+L.TOOLTIP_MINIMAP_HINT = "Click to toggle Overview"
+L.TOOLTIP_SPELL_ID_FMT = "SpellID: %d"
+L.ALERT_TARGET_YOU = "You are the target"

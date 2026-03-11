@@ -1,0 +1,26 @@
+## Interface: 120001
+## Title: BossReminder
+## Notes: Enhanced boss warnings with per-spell voice options.
+## Author: 橘座-白银之手 + Copilot
+## Version: 0.1.0
+## SavedVariables: BossReminderDB
+## OptionalDeps: LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0
+## IconTexture: Interface\AddOns\BossReminder\BossReminder.tga
+
+Module\LibDBIcon-1.0\LibStub\LibStub.lua
+Module\LibDBIcon-1.0\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Module\LibDBIcon-1.0\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Module\LibDBIcon-1.0\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Module\Ace3\AceGUI-3.0\AceGUI-3.0.xml
+Module\Ace3\AceLocale-3.0\AceLocale-3.0.lua
+
+Locale/enUS.lua
+Locale/zhCN.lua
+Locale/zhTW.lua
+Locale/Apply.lua
+Utils.lua
+RuntimeDB.lua
+Core.lua
+ExternalCommands.lua
+Config.lua
+Main.lua
