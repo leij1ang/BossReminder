@@ -1,6 +1,7 @@
 -- BossReminder_DB: 专精/配置读写，specConfigs[].spells，不碰语音
+-- 仅检查 addon 存在；addon.db 在 BossReminder 的 OnInitialize 中创建，加载本文件时可能尚未存在
 local addon = _G.BossReminder
-if not addon or not addon.db then return end
+if not addon then return end
 
 local brLog = addon.brLog
 

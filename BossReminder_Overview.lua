@@ -1,6 +1,6 @@
 -- BossReminder_Overview: overview window, export/import, filters, minimap button
 local addon = _G.BossReminder
-if not addon or not addon.db then return end
+if not addon then return end
 
 local L = addon.L or setmetatable({}, { __index = function(_, k) return k end })
 local AceGUI = LibStub("AceGUI-3.0")
@@ -510,13 +510,3 @@ function addon.OpenOverview()
         mainFrame.frame:Show() mainFrame.frame:Raise() RefreshOverviewData()
     else BuildOverviewWindow() end
 end
-
-
--- LibDBIcon
-local ldb = LibStub("LibDataBroker-1.1"):NewDataObject("BossReminder", {
-    type = "launcher", icon = "Interface\\AddOns\\BossReminder\\BossReminder.tga",
-    OnClick = function(_, button) if button == "LeftButton" then addon.OpenOverview() end end,
-    OnTooltipShow = function(tt) tt:AddLine("BossReminder") tt:AddLine(L.TOOLTIP_MINIMAP_HINT or "Click to toggle Overview", 0.8, 0.8, 0.8) end,
-})
-if not addon.db.global.minimapIcon then addon.db.global.minimapIcon = {} end
-LibStub("LibDBIcon-1.0"):Register("BossReminder", ldb, addon.db.global.minimapIcon)

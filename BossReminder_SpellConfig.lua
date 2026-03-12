@@ -1,6 +1,6 @@
 -- BossReminder_SpellConfig: single-spell config window + Encounter Journal (C) button
 local addon = _G.BossReminder
-if not addon or not addon.db then return end
+if not addon then return end
 
 local L = addon.L or setmetatable({}, { __index = function(_, k) return k end })
 local AceGUI = LibStub("AceGUI-3.0")

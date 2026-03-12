@@ -1,6 +1,6 @@
 -- BossReminder_Sound: 按 spell 设置/清除语音，仅函数调用
 local addon = _G.BossReminder
-if not addon or not addon.db then return end
+if not addon then return end
 
 local TRIGGER_WARNING = Enum and Enum.EncounterEventSoundTrigger and Enum.EncounterEventSoundTrigger.OnTimelineEventFinished
 local TRIGGER_HIGHLIGHT = Enum and Enum.EncounterEventSoundTrigger and Enum.EncounterEventSoundTrigger.OnTimelineEventHighlight

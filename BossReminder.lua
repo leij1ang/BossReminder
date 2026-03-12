@@ -1,7 +1,5 @@
 -- BossReminder: 主入口，状态 (spellEventMap / specID / activeProfile) + 专精切换 + 配置编排
 local addonName = ... or "BossReminder"
-local AceAddon = LibStub("AceAddon-3.0")
-local AceDB = LibStub("AceDB-3.0")
 
 local defaults = {
     profile = {
@@ -15,22 +13,26 @@ local defaults = {
     global = { minimapIcon = {} },
 }
 
-local addon = AceAddon:NewAddon(addonName, "AceEvent-3.0", "AceConsole-3.0")
-addon.defaults = defaults
+local addon = LibStub("AceAddon-3.0"):NewAddon(addonName, "AceEvent-3.0", "AceConsole-3.0")
 
 addon.spellEventMap = {}
 addon.specID = "default"
 addon.activeProfile = nil
 
-addon.db = AceDB:New("BossReminderDB", defaults, true)
-addon.db.RegisterCallback(addon, "OnProfileChanged", function()
-    addon:SyncActiveProfile()
-    addon:ForceUpdateAllSounds()
-end)
 
 function addon:OnInitialize()
-    self.L = LibStub("AceLocale-3.0"):GetLocale(self.name, true) or setmetatable({}, { __index = function(_, k) return k end })
+    self.db = LibStub("AceDB-3.0"):New("BossReminderDB", defaults, true)
+    self.L = LibStub("AceLocale-3.0"):GetLocale(self.name, true)
     if self.ScanAllEvents then self:ScanAllEvents() end
+
+    -- LibDBIcon
+    local ldb = LibStub("LibDataBroker-1.1"):NewDataObject("BossReminder", {
+        type = "launcher", icon = "Interface\\AddOns\\BossReminder\\BossReminder.tga",
+        OnClick = function(_, button) if button == "LeftButton" then addon.OpenOverview() end end,
+        OnTooltipShow = function(tt) tt:AddLine("BossReminder") tt:AddLine(self.L.TOOLTIP_MINIMAP_HINT or "Click to toggle Overview", 0.8, 0.8, 0.8) end,
+    })
+    if not addon.db.global.minimapIcon then addon.db.global.minimapIcon = {} end
+    LibStub("LibDBIcon-1.0"):Register("BossReminder", ldb, addon.db.global.minimapIcon)
 end
 
 function addon:OnEnable()
