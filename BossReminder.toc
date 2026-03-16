@@ -4,7 +4,7 @@
 ## Author: 橘座-白银之手 + Copilot
 ## Version: 0.1.0
 ## SavedVariables: BossReminderDB
-## OptionalDeps: LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0
+## OptionalDeps: LibSharedMedia-3.0, LibDataBroker-1.1, LibDBIcon-1.0, Blizzard_EncounterJournal
 ## IconTexture: Interface\AddOns\BossReminder\BossReminder.tga
 
 Module\LibDBIcon-1.0\LibStub\LibStub.lua
@@ -25,7 +25,9 @@ Locale\zhTW.lua
 Locale\Apply.lua
 Utils.lua
 BossReminder_DB.lua
+season.lua
 BossReminder_Sound.lua
-BossReminder_Overview.lua
-BossReminder_SpellConfig.lua
+BossReminder_UI.lua
+BossReminder_Settings.lua
 BossReminder_Commands.lua
+BossReminder_Tools.lua

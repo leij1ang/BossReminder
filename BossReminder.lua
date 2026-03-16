@@ -14,6 +14,7 @@ local defaults = {
 }
 
 local addon = LibStub("AceAddon-3.0"):NewAddon(addonName, "AceEvent-3.0", "AceConsole-3.0")
+_G.BossReminder = addon
 
 addon.spellEventMap = {}
 addon.specID = "default"
@@ -28,7 +29,7 @@ function addon:OnInitialize()
     -- LibDBIcon
     local ldb = LibStub("LibDataBroker-1.1"):NewDataObject("BossReminder", {
         type = "launcher", icon = "Interface\\AddOns\\BossReminder\\BossReminder.tga",
-        OnClick = function(_, button) if button == "LeftButton" then addon.OpenOverview() end end,
+        OnClick = function(_, button) if button == "LeftButton" then local fn = addon.OpenUI or addon.OpenConfig if fn then fn() end end end,
         OnTooltipShow = function(tt) tt:AddLine("BossReminder") tt:AddLine(self.L.TOOLTIP_MINIMAP_HINT or "Click to toggle Overview", 0.8, 0.8, 0.8) end,
     })
     if not addon.db.global.minimapIcon then addon.db.global.minimapIcon = {} end
@@ -46,7 +47,6 @@ function addon:OnSpecChanged()
     self:ClearSound()
     self:SyncActiveProfile()
     self:SetSound()
-    if self.UpdateOverview then self:UpdateOverview() end
 end
 
 function addon:SyncActiveProfile()
@@ -69,10 +69,3 @@ function addon:RemoveSpellConfig(profileName, spellID)
     if profileName ~= self:GetCurrentSpecKey() then return end
     self:ClearSoundBySpell(id)
 end
-
-function addon:RemoveAllSpellConfigs(profileName)
-    self:ClearSoundForProfile(profileName)
-    self:RemoveAllSpellConfigsFromProfile(profileName)
-end
-
-_G.BossReminder = addon

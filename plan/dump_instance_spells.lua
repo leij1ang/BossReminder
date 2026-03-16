@@ -1,0 +1,2 @@
+-- 复制到游戏 /run 执行（约 150 字符）。改 1316 为其他 instanceID
+-- /run C_AddOns.LoadAddOn("Blizzard_EncounterJournal")EJ_SelectInstance(1316)local n,_,e=EJ_GetEncounterInfoByIndex(1,1316)local _,_,_,r=EJ_GetEncounterInfo(e)local i=C_EncounterJournal.GetSectionInfo(r)print("Boss",e,n,"spellID",i and i.spellID or "nil")

@@ -67,6 +67,13 @@ L.TRANSFER_IMPORT_HINT = "貼上 BRP1 字串後點擊匯入"
 L.TRANSFER_ERROR_FMT = "錯誤: %s"
 L.TRANSFER_IMPORTED_FMT = "匯入 %d 筆，略過 %d 筆"
 
+L.HEADER_TRIGGER0 = "Trigger0"
+L.HEADER_TRIGGER1 = "Trigger1"
+L.HEADER_TRIGGER2 = "Trigger2"
+L.TOOLTIP_TRIGGER0 = "當遭遇事件首次顯示文字警告時觸發的觸發器。"
+L.TOOLTIP_TRIGGER1 = "當遭遇事件在時間軸上進入完成狀態（如已施放或已解決）時觸發的觸發器。"
+L.TOOLTIP_TRIGGER2_FMT = "當遭遇事件在時間軸上達到高亮時長時觸發的觸發器（通常為施放前約 %s 秒）。"
+
 L.TOOLTIP_CONFIG_SPELL = "配置這個技能"
 L.TOOLTIP_MINIMAP_HINT = "點擊開啟/關閉總覽"
 L.TOOLTIP_SPELL_ID_FMT = "技能ID: %d"

@@ -30,8 +30,6 @@ function addon:SetUsePerSpec(value)
     getSettings(self.db.profile).usePerSpec = value and true or false
 end
 
-function addon:SetCurrentSpecKey() end
-
 local function deepCopySpells(src)
     if not src or type(src) ~= "table" then return {} end
     local dst = {}
@@ -87,19 +85,13 @@ function addon:RemoveSpellConfigFromProfile(profileName, spellID)
     spells[spellID] = nil
 end
 
-function addon:RemoveAllSpellConfigsFromProfile(profileName)
-    if not profileName then return end
-    local spells = self:EnsureSpecSpells(profileName)
-    for k in pairs(spells) do spells[k] = nil end
-end
-
 function addon:GetSpellConfig(spellID, createIfMissing)
     if not spellID then return nil end
     local spells = self:GetCurrentSpecSpellsTable()
     if not spells then return nil end
     local cfg = spells[spellID]
     if not cfg and createIfMissing then
-        cfg = { enabled = true, warningSound = "", highlightSound = "", shouldCountdown = false }
+        cfg = { enabled = true, warningSound = "", highlightSound = "", textSound = "" }
         spells[spellID] = cfg
     end
     if cfg and cfg.enabled == nil then cfg.enabled = true end
@@ -115,19 +107,22 @@ end
 
 function addon:ScanAllEvents()
     local map = {}
-    if C_EncounterEvents and C_EncounterEvents.GetEventList then
-        local list = C_EncounterEvents.GetEventList()
-        if type(list) == "table" then
-            for _, eventID in ipairs(list) do
-                if C_EncounterEvents.HasEventInfo and C_EncounterEvents.HasEventInfo(eventID) then
-                    local info = C_EncounterEvents.GetEventInfo(eventID)
-                    if info and info.spellID then map[info.spellID] = eventID end
+    self.eventCache = self.eventCache or {}
+    table.wipe(self.eventCache)
+    local list = C_EncounterEvents.GetEventList()
+    if type(list) == "table" then
+        for _, eventID in ipairs(list) do
+            if C_EncounterEvents.HasEventInfo(eventID) then
+                local info = C_EncounterEvents.GetEventInfo(eventID)
+                if info then
+                    self.eventCache[eventID] = info
+                    if info.spellID then map[info.spellID] = eventID end
                 end
             end
         end
     end
     self.spellEventMap = map
-    if brLog then brLog("ScanAllEvents: %d spells", (function() local n=0 for _ in pairs(map) do n=n+1 end return n end)()) end
+    if brLog then brLog("ScanAllEvents: %d spells, %d events cached", (function() local n=0 for _ in pairs(map) do n=n+1 end return n end)(), (function() local n=0 for _ in pairs(self.eventCache) do n=n+1 end return n end)()) end
     return map
 end
 

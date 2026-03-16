@@ -34,3 +34,28 @@ function addon.GetLSM()
     if not LibStub then return nil end
     return LibStub("LibSharedMedia-3.0", true)
 end
+
+addon.SOUND_NONE_KEY = "__none__"
+
+function addon.GetBRSoundList()
+    local L = addon.L or setmetatable({}, { __index = function(_, k) return k end })
+    local list = { [addon.SOUND_NONE_KEY] = L.NONE or "None" }
+    local lsm = addon.GetLSM()
+    if lsm then
+        local sounds = lsm:List("sound") or {}
+        for _, displayName in ipairs(sounds) do
+            local plain = displayName:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+            if plain and plain:match("^BR") then
+                list[plain] = displayName
+                if displayName ~= plain then list[displayName] = displayName end
+            end
+        end
+        local keys = {}
+        for k in pairs(list) do if k ~= addon.SOUND_NONE_KEY then keys[#keys+1] = k end end
+        table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
+        local ordered = { [addon.SOUND_NONE_KEY] = list[addon.SOUND_NONE_KEY] }
+        for _, k in ipairs(keys) do ordered[k] = list[k] end
+        return ordered
+    end
+    return list
+end

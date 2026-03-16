@@ -35,6 +35,9 @@ end
 
 addon:RegisterChatCommand("brpull", function(msg) HandlePullCommand(msg) end)
 addon:RegisterChatCommand("brbreak", function(msg) HandleBreakCommand(msg) end)
+addon:RegisterChatCommand("br", function() if addon.OpenUI then addon.OpenUI() end end)
+addon:RegisterChatCommand("brdump", function() if addon.DumpInstanceSpells then addon.DumpInstanceSpells() end end)
+addon:RegisterChatCommand("brdumpinst", function() if addon.DumpInstanceList then addon.DumpInstanceList() end end)
 
 -- Hook DBM /pull and /break if present
 local slashHookState = { pullWrapped = false, breakWrapped = false }
