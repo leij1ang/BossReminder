@@ -39,23 +39,29 @@ addon.SOUND_NONE_KEY = "__none__"
 
 function addon.GetBRSoundList()
     local L = addon.L or setmetatable({}, { __index = function(_, k) return k end })
+    -- 1. list 初始化将 none 放入
     local list = { [addon.SOUND_NONE_KEY] = L.NONE or "None" }
+    list.__orderedKeys = { addon.SOUND_NONE_KEY }
     local lsm = addon.GetLSM()
     if lsm then
+        -- 2. LSM 获取音频，收集到 temp
+        local temp = {}
         local sounds = lsm:List("sound") or {}
         for _, displayName in ipairs(sounds) do
             local plain = displayName:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
             if plain and plain:match("^BR") then
-                list[plain] = displayName
-                if displayName ~= plain then list[displayName] = displayName end
+                temp[plain] = displayName
+                if displayName ~= plain then temp[displayName] = displayName end
             end
         end
+        -- 3. 根据名称排序，一次性放入 list
         local keys = {}
-        for k in pairs(list) do if k ~= addon.SOUND_NONE_KEY then keys[#keys+1] = k end end
+        for k in pairs(temp) do keys[#keys + 1] = k end
         table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
-        local ordered = { [addon.SOUND_NONE_KEY] = list[addon.SOUND_NONE_KEY] }
-        for _, k in ipairs(keys) do ordered[k] = list[k] end
-        return ordered
+        for _, k in ipairs(keys) do
+            list[k] = temp[k]
+            list.__orderedKeys[#list.__orderedKeys + 1] = k
+        end
     end
     return list
 end

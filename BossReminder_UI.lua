@@ -485,7 +485,8 @@ local function InitSpellRow(row, elementData)
         UIDropDownMenu_SetText(dd, soundList[val] or L.NONE or "None")
         local sid, ckey = spellID, col.key
         UIDropDownMenu_Initialize(dd, function(self, level)
-            for k, v in pairs(soundList) do
+            for _, k in ipairs(soundList.__orderedKeys or { addon.SOUND_NONE_KEY }) do
+                local v = soundList[k]
                 local info = UIDropDownMenu_CreateInfo()
                 info.text = v
                 info.func = function()
@@ -638,7 +639,8 @@ local function RefreshSpellTable()
             UIDropDownMenu_SetText(dd, soundList[val] or L.NONE or "None")
             local sid, ckey = spellID, col.key
             UIDropDownMenu_Initialize(dd, function(self, level)
-                for k, v in pairs(soundList) do
+                for _, k in ipairs(soundList.__orderedKeys or { addon.SOUND_NONE_KEY }) do
+                    local v = soundList[k]
                     local info = UIDropDownMenu_CreateInfo()
                     info.text = v
                     info.func = function()
@@ -685,6 +687,7 @@ local function BuildMainWindow()
     end
 
     mainFrame = CreateFrame("Frame", "BossReminderMainFrame", UIParent, "BackdropTemplate")
+    table.insert(UISpecialFrames, "BossReminderMainFrame")
     mainFrame:SetSize(900, 580)
     mainFrame:SetPoint("CENTER")
     mainFrame:SetMovable(true)
